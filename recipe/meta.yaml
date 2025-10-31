@@ -20,6 +20,10 @@ test:
 about:
   home: https://github.com/NVIDIA/NVTX
   summary: NVIDA Tool Extension Library (NVTX) C API
+  description: | 
+    NVTX is a cross-platform API for annotating source code to provide 
+    contextual information to developer tools.
+
   license: Apache-2.0 WITH LLVM-exception
   license_file: LICENSE.txt
   dev_url: https://github.com/NVIDIA/NVTX
