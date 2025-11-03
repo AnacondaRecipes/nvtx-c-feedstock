@@ -12,6 +12,10 @@ source:
 build:
   number: 0
 
+requirements:
+  build:
+  run:
+
 test:
   commands:
     - test -e "$PREFIX"/include/nvtx3/nvToolsExt.h  # [not win]
@@ -25,6 +29,7 @@ about:
     contextual information to developer tools.
 
   license: Apache-2.0 WITH LLVM-exception
+  license_family: Apache
   license_file: LICENSE.txt
   dev_url: https://github.com/NVIDIA/NVTX
   doc_url: https://nvidia.github.io/NVTX/doxygen/index.html
