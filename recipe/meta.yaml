@@ -14,17 +14,33 @@ build:
 
 requirements:
   build:
+    - cmake
+    - ninja
   run:
 
 test:
+  files:
+    - test_cmake
+  requires:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
+    - cmake >=3.17
+    - ninja
   commands:
     - test -e "$PREFIX"/include/nvtx3/nvToolsExt.h  # [not win]
+    - test -e "$PREFIX"/include/nvtx3/nvtx3.hpp  # [not win]
     - if not exist "%LIBRARY_INC%"\nvtx3\nvToolsExt.h exit 1  # [win]
+    - if not exist "%LIBRARY_INC%"\nvtx3\nvtx3.hpp exit 1  # [win]
+    - pushd test_cmake
+    - cmake -G "Ninja" .
+    - cmake --build . --config Release
+    - popd
 
 about:
   home: https://github.com/NVIDIA/NVTX
   summary: NVIDA Tool Extension Library (NVTX) C API
-  description: | 
+  description: |
     NVTX is a cross-platform API for annotating source code to provide 
     contextual information to developer tools.
 
