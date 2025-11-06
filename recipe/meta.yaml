@@ -11,9 +11,16 @@ source:
 
 build:
   number: 0
+  ignore_run_exports:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - cmake
     - ninja
   run:
