@@ -22,7 +22,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - cmake
-    - ninja
+    - ninja-base
   run:
 
 test:
@@ -33,7 +33,7 @@ test:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - cmake >=3.17
-    - ninja
+    - ninja-base
   commands:
     - test -e "$PREFIX"/include/nvtx3/nvToolsExt.h  # [not win]
     - test -e "$PREFIX"/include/nvtx3/nvtx3.hpp  # [not win]
