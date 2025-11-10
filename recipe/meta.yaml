@@ -1,5 +1,5 @@
-{% set version = "3.1.1" %}
-{% set sha256 = "30c9fe2034d5da90c7b2051570dd8b9d59e05b8b9037a1c80bb088dce9c1f5d9" %}
+{% set version = "3.3.0" %}
+{% set sha256 = "67d0cda2f9d19a89684592dab40c0bf2c2b13d5d588e51392076c0890a64b6c0" %}
 
 package:
   name: nvtx-c
@@ -11,17 +11,51 @@ source:
 
 build:
   number: 0
+  ignore_run_exports:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
+    - cmake
+    - ninja-base
+  run:
 
 test:
+  files:
+    - test_cmake
+  requires:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
+    - cmake >=3.17
+    - ninja-base
   commands:
     - test -e "$PREFIX"/include/nvtx3/nvToolsExt.h  # [not win]
+    - test -e "$PREFIX"/include/nvtx3/nvtx3.hpp  # [not win]
     - if not exist "%LIBRARY_INC%"\nvtx3\nvToolsExt.h exit 1  # [win]
+    - if not exist "%LIBRARY_INC%"\nvtx3\nvtx3.hpp exit 1  # [win]
+    - pushd test_cmake
+    - cmake -G "Ninja" .
+    - cmake --build . --config Release
+    - popd
 
 about:
-  home: https://nvidia.github.io/NVTX/doxygen/index.html
+  home: https://github.com/NVIDIA/NVTX
   summary: NVIDA Tool Extension Library (NVTX) C API
+  description: |
+    NVTX is a cross-platform API for annotating source code to provide 
+    contextual information to developer tools.
+
   license: Apache-2.0 WITH LLVM-exception
+  license_family: Apache
   license_file: LICENSE.txt
+  dev_url: https://github.com/NVIDIA/NVTX
+  doc_url: https://nvidia.github.io/NVTX/doxygen/index.html
 
 extra:
   recipe-maintainers:
