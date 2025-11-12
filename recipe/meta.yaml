@@ -10,8 +10,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
-  ignore_run_exports:
+  number: 1
+  ignore_run_exports_from:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
