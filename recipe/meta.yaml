@@ -1,5 +1,5 @@
-{% set version = "3.3.0" %}
-{% set sha256 = "67d0cda2f9d19a89684592dab40c0bf2c2b13d5d588e51392076c0890a64b6c0" %}
+{% set version = "3.5.0" %}
+{% set sha256 = "f244c5eec33f9769123a755dda1e9b80339345ab278cf9542ff34677c88804b5" %}
 
 package:
   name: nvtx-c
@@ -10,7 +10,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   ignore_run_exports_from:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
@@ -48,7 +48,7 @@ about:
   home: https://github.com/NVIDIA/NVTX
   summary: NVIDA Tool Extension Library (NVTX) C API
   description: |
-    NVTX is a cross-platform API for annotating source code to provide 
+    NVTX is a cross-platform API for annotating source code to provide
     contextual information to developer tools.
 
   license: Apache-2.0 WITH LLVM-exception
