@@ -1,4 +1,7 @@
 {% set version = "3.6.0" %}
+# This hash does not match the conda-forge hash. It looks like there
+# may have been some tags moved around after conda-forge updated their
+# recipe but before 10/20/2026.
 {% set sha256 = "da1939acb9f82b68b6fc9e1b8d392cc52a5fddae60d09e3e5e20fce40e3d7f83" %}
 
 package:
@@ -46,7 +49,7 @@ test:
 
 about:
   home: https://github.com/NVIDIA/NVTX
-  summary: NVIDA Tool Extension Library (NVTX) C API
+  summary: NVIDIA Tool Extension Library (NVTX) C API
   description: |
     NVTX is a cross-platform API for annotating source code to provide
     contextual information to developer tools.
