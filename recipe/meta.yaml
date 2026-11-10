@@ -1,9 +1,9 @@
-{% set version = "3.6.0" %}
+{% set version = "3.7.0" %}
+{% set sha256 = "db1ae80615eeeb5c559bc3f55ca200c38a9e50a83fdc65e06b901d8861b1c07d" %}
+
 # This hash does not match the conda-forge hash. It looks like there
 # may have been some tags moved around after conda-forge updated their
 # recipe but before 10/20/2026.
-{% set sha256 = "da1939acb9f82b68b6fc9e1b8d392cc52a5fddae60d09e3e5e20fce40e3d7f83" %}
-
 package:
   name: nvtx-c
   version: {{ version }}
@@ -18,6 +18,7 @@ build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
+  skip: true  # [py<39]
 
 requirements:
   build:
@@ -27,6 +28,13 @@ requirements:
     - cmake
     - ninja-base
   run:
+    - python
+  host:
+    - python
+    - setuptools
+    - wheel
+    - cython >=3.1
+    - pip
 
 test:
   files:
